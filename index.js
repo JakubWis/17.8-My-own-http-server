@@ -4,8 +4,8 @@ var fs = require('fs');
 var server = http.createServer();
 
 server.on('request', function (request, response) {
-    response.setHeader("Content-Type", "text/html; charset=utf-8");
     if (request.method === 'GET' && request.url === '/') {
+        response.setHeader("Content-Type", "text/html; charset=utf-8");
         fs.readFile('./index.html', function (err, html) {
             if(err) throw err;
             response.write(html);
@@ -14,7 +14,7 @@ server.on('request', function (request, response) {
     }
     else {
             response.statusCode = 404;
-             response.setHeader("Content-Type", "image/jpeg");
+            response.setHeader("Content-Type", "image/jpeg");
             fs.readFile('./404.jpg', function (err, img) {
                 if(err) throw err;
                 response.write(img);
